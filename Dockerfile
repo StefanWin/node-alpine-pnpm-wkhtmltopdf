@@ -32,3 +32,6 @@ RUN apk add --no-cache \
 COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
 COPY --from=wkhtmltopdf /bin/wkhtmltoimage /bin/wkhtmltoimage
 COPY --from=wkhtmltopdf /bin/libwkhtmltox* /bin/
+
+RUN wkhtmltopdf --version
+RUN wkhtmltoimage --version
