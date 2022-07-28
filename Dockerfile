@@ -1,3 +1,5 @@
+FROM surnet/alpine-wkhtmltopdf:3.9-0.12.5-full as wkhtmltopdf
+
 FROM stefanwin/node-alpine-pnpm:latest
 # https://github.com/Surnet/docker-wkhtmltopdf#other-images
 
@@ -26,3 +28,7 @@ RUN apk add --no-cache \
 # Clean up when done
 && rm -rf /tmp/* \
 && apk del .build-deps
+
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
+COPY --from=wkhtmltopdf /bin/wkhtmltoimage /bin/wkhtmltoimage
+COPY --from=wkhtmltopdf /bin/libwkhtmltox* /bin/
